@@ -1,8 +1,8 @@
 pizza_list = [
-{"Pizza": "Pepperoni", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Meat Lovers", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Margherita", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Vegetarian", "Price": 13, "GF Free?": True, "Vegan?": True,"Dairy?": False}, 
+{"Pizza": "Pepperoni", "Price ($)": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Meat Lovers", "Price ($)": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Margherita", "Price ($)": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Vegetarian", "Price ($)": 13, "GF Free?": True, "Vegan?": True,"Dairy?": False}, 
 ]
 sides_list = [
 {"Side": "Fries", "Price": 8, "GF Free?": False, "Vegan?": True,"Dairy?": False}, 
@@ -14,31 +14,44 @@ cart = []
 def view_menu(database1,database2): 
     print(f"Pizzas:\n")
     print(f"-------------------")
-    for pizzas in pizza_list:
+    for pizzas in database1:
         clean_pizzas = str(pizzas).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
         print(f"{clean_pizzas}\n")
     print(f"Sides:\n")
     print(f"-------------------")
-    for side in sides_list:    
+    for side in database2:    
         clean_sides = str(side).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
         print(f"{clean_sides}\n")
 
 def add_item(database,database2): 
     product = input(f"What items would you like to add, please input the name of the item in text.\n").lower()
-    if product == database["Pizza"].lower():
-        cart.append(product)
-    elif product == database2["Side"].lower(): 
-        cart.append(product)
+    found = False
+    for item in database:
+        if product == item["Pizza"].lower():
+            cart.append(item)
+            clean_items = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+            print(f"Added {clean_items} to cart!")
+            found = True
+            break
+    if not found:
+            for item in database2:
+                if product == item["Side"].lower(): 
+                    cart.append(item)
+                    clean_items = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                    print(f"Added {clean_items} to cart!")
+                    found = True
+    if not found:
+        print(f"Sorry, Item is not in the menu.")
 
-    else: 
-        print()
 """
 def remove_item(database): 
 
 def sort(database): 
 """
 def view_cart(database): 
-    print(f"{cart}\n")
+    for items in cart:
+        clean_cart = str(items).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+        print(f"{clean_cart}\n")
 """
 def checkout(database): 
 """
