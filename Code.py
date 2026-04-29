@@ -12,25 +12,25 @@ sides_list = [
 cart = []
 
 def view_menu(database1,database2): 
-    print(f"Pizzas:\n")
+    print(f"\nPizzas:")
     print(f"-------------------")
     for pizzas in database1:
         clean_pizzas = str(pizzas).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
         print(f"{clean_pizzas}\n")
-    print(f"Sides:\n")
+    print(f"\nSides:")
     print(f"-------------------")
     for side in database2:    
         clean_sides = str(side).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
         print(f"{clean_sides}\n")
 
 def add_item(database,database2): 
-    product = input(f"What items would you like to add, please input the name of the item in text.\n").lower()
+    product = input(f"\nWhat items would you like to add, please input the name of the item in text.\n").lower()
     found = False
     for item in database:
         if product == item["Pizza"].lower():
             cart.append(item)
             clean_items = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
-            print(f"Added {clean_items} to cart!")
+            print(f"\nAdded {clean_items} to cart!")
             found = True
             break
     if not found:
@@ -38,23 +38,37 @@ def add_item(database,database2):
                 if product == item["Side"].lower(): 
                     cart.append(item)
                     clean_items = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
-                    print(f"Added {clean_items} to cart!")
+                    print(f"\nAdded {clean_items} to cart!")
                     found = True
     if not found:
-        print(f"Sorry, Item is not in the menu.")
+        print(f"\nSorry, Item is not in the menu.")
 
-"""
 def remove_item(database): 
-
+    view_cart(database)
+    try:
+        removed_number = float(input(f"\nPlease input the item you want to remove using their corresponding cart number. "))
+        removed_number = int(removed_number)
+        cart.pop(removed_number - 1)
+        print(f"Successfully removed item.")
+    except ValueError:
+        print(f"\nInvalid Option, please input a whole positive integer corresponding to your choice.")
+"""
 def sort(database): 
 """
 def view_cart(database): 
-    for items in cart:
+    tally = 0
+    for items in database:
+        tally += 1
         clean_cart = str(items).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
-        print(f"{clean_cart}\n")
-"""
+        print(f"\n{tally}. {clean_cart}")
+
+
 def checkout(database): 
-"""
+    tally = 0
+    for items in database:
+        tally += 1
+        clean_cart = str(items).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+        print(f"\n{tally}. {clean_cart["Pizza"]} - {clean_cart["Price"]}")
 
 def menu_display():
     print(f"\n Welcome to the pizza place!")
@@ -77,13 +91,13 @@ def menu_function():
                     print(f"Exiting program.\n")
                     exit()
                 elif choice == 6:  
-                    checkout(pizza_list)
+                    checkout(cart)
                 elif choice == 5:
-                    view_cart(pizza_list)
+                    view_cart(cart)
                 elif choice == 4:
                     sort(pizza_list)
                 elif choice == 3:
-                    remove_item(pizza_list)
+                    remove_item(cart)
                 elif choice == 2:
                     add_item(pizza_list,sides_list)
                 elif choice == 1:
