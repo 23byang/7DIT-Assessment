@@ -1,16 +1,16 @@
 """This Program acts as a user interface for a pizza shop."""
 import random 
 pizza_list = [
-    {"Pizza": "Pepperoni Pizza", "Price": 13, "GF Free": True, "Vegan": False, "Dairy": True}, 
-    {"Pizza": "Meat Lovers Pizza", "Price": 14, "GF Free": True, "Vegan": False, "Dairy": True}, 
-    {"Pizza": "Margherita Pizza", "Price": 15, "GF Free": True, "Vegan": False, "Dairy": True}, 
-    {"Pizza": "Vegetarian Pizza", "Price": 13, "GF Free": True, "Vegan": True, "Dairy": True}, 
+    {"Pizza": "Pepperoni Pizza", "Price": 13, "GF Free": True, "Vegan": False, "Dairy": True},
+    {"Pizza": "Meat Lovers Pizza", "Price": 14, "GF Free": True, "Vegan": False, "Dairy": True},
+    {"Pizza": "Margherita Pizza", "Price": 15, "GF Free": True, "Vegan": False, "Dairy": True},
+    {"Pizza": "Vegetarian Pizza", "Price": 13, "GF Free": True, "Vegan": True, "Dairy": True},
 ]
 sides_list = [
-    {"Side": "Fries", "Price": 8, "GF Free": False, "Vegan": True, "Dairy": False}, 
-    {"Side": "Pepperoni Wheels", "Price": 8, "GF Free": False, "Vegan": False, "Dairy": False}, 
-    {"Side": "Garlic Bread", "Price": 8, "GF Free": False, "Vegan": True, "Dairy": True}, 
-    {"Side": "Chicken Fingers", "Price": 8, "GF Free": True, "Vegan": False, "Dairy": False}, 
+    {"Side": "Fries", "Price": 8, "GF Free": False, "Vegan": True, "Dairy": False},
+    {"Side": "Pepperoni Wheels", "Price": 8, "GF Free": False, "Vegan": False, "Dairy": False},
+    {"Side": "Garlic Bread", "Price": 8, "GF Free": False, "Vegan": True, "Dairy": True},
+    {"Side": "Chicken Fingers", "Price": 8, "GF Free": True, "Vegan": False, "Dairy": False},
 ]
 """Dictionaries in Lists for my data."""
 cart = []
@@ -77,6 +77,8 @@ def price_extractor(item):
     """This function allows the sort function to work by extracting the price value from the different items, allowing the program to then sort the items."""
     if "Price" in item:
         return item["Price"]
+
+
 def sort(database, database2):
     """This function allows the user to sort the menu by various conditions, such as price, and dietary specifications."""
     temp_value = True
@@ -127,7 +129,7 @@ def sort(database, database2):
                         temp_value2 = False
                         while temp_value3:
                             dairy_choice = float(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
-                            if dairy_choice not in range (1,3):
+                            if dairy_choice not in range(1,3):
                                 print("Invalid Input, please input either 1 or 2")
                             else:
                                 dairy_choice = int(dairy_choice)
@@ -182,19 +184,21 @@ def sort(database, database2):
                         temp_value2 = False
                         while temp_value3:
                             dairy_choice = float(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
-                            dairy_choice = int(dairy_choice)
-                            if dairy_choice == 1:
-                                user_dairy_choice = True
-                                temp_value3 = False
-                            elif dairy_choice == 2:
-                                user_dairy_choice = False
-                                temp_value3 = False
-                            else:
-                                print("Please choose one of the options provided (1 & 2).")
-                            for item in database:
-                                if item["Dairy"] == user_dairy_choice:
-                                    clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
-                                    print(clean_item)
+                            if dairy_choice not in range(1,3):
+                                print("Invalid Input, please input either 1 or 2")
+                                dairy_choice = int(dairy_choice)
+                                if dairy_choice == 1:
+                                    user_dairy_choice = True
+                                    temp_value3 = False
+                                elif dairy_choice == 2:
+                                    user_dairy_choice = False
+                                    temp_value3 = False
+                                else:
+                                    print("Please choose one of the options provided (1 & 2).")
+                                for item in database:
+                                    if item["Dairy"] == user_dairy_choice:
+                                        clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                        print(clean_item)
             elif choice == 3:
                 temp_value = False
                 while temp_value2:
@@ -211,6 +215,7 @@ def sort(database, database2):
                         for item in database2:
                             if item["GF Free"] is True:
                                 clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                print(clean_item)
                                 temp_value2 = False
                     if subchoice == 3:
                         for item in database2:
@@ -222,19 +227,21 @@ def sort(database, database2):
                         temp_value2 = False
                         while temp_value3:
                             dairy_choice = float(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
-                            dairy_choice = int(dairy_choice)
-                            if dairy_choice == 1:
-                                user_dairy_choice = True
-                                temp_value3 = False
-                            elif dairy_choice == 2:
-                                user_dairy_choice = False
-                                temp_value3 = False
-                            else:
-                                print("Please choose one of the options provided (1 & 2).")
-                            for item in database2:
-                                if item["Dairy"] == user_dairy_choice:
-                                    clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
-                                    print(clean_item)
+                            if dairy_choice not in range(1, 3):
+                                print("Invalid Input, please input either 1 or 2")
+                                dairy_choice = int(dairy_choice)
+                                if dairy_choice == 1:
+                                    user_dairy_choice = True
+                                    temp_value3 = False
+                                elif dairy_choice == 2:
+                                    user_dairy_choice = False
+                                    temp_value3 = False
+                                else:
+                                    print("Please choose one of the options provided (1 & 2).")
+                                for item in database2:
+                                    if item["Dairy"] == user_dairy_choice:
+                                        clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                        print(clean_item)
         except ValueError:
             print("Invalid Input, please input one of the provided options")
 
@@ -242,10 +249,13 @@ def sort(database, database2):
 def view_cart(database): 
     """This functions displays the cart so that the user may reflect on what they have already added. It uses a tally system as to assign items various cart numbers."""
     tally = 0
-    for items in database:
-        tally += 1
-        clean_cart = str(items).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
-        print(f"\n{tally}. {clean_cart}")
+    if database == []:
+        print("Cart Empty, returning to main menu.")
+    else:
+        for items in database:
+            tally += 1
+            clean_cart = str(items).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+            print(f"\n{tally}. {clean_cart}")
 
 
 def checkout(database):
@@ -272,12 +282,14 @@ def checkout(database):
             if choice == "yes":
                 print(f"Your order number is {random.randint(1,100)}.")
                 running = False
+                exit()
             elif choice == "no":
                 running = False
             else:
                 print('Invalid Choice, please input ("Yes" or "No")')
         except ValueError:
             print('Invalid Choice, please input ("Yes" or "No")')
+
 
 def menu_display():
     """This function displays the main menu, and does the visual part of the job."""
