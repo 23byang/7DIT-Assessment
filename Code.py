@@ -127,29 +127,32 @@ def sort(database, database2):
                         temp_value2 = False
                         while temp_value3:
                             dairy_choice = float(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
-                            dairy_choice = int(dairy_choice)
-                            if dairy_choice == 1:
-                                user_dairy_choice = True
-                                temp_value3 = False
-                            elif dairy_choice == 2:
-                                user_dairy_choice = False
-                                temp_value3 = False
+                            if dairy_choice not in range (1,3):
+                                print("Invalid Input, please input either 1 or 2")
                             else:
-                                print("Please choose one of the options provided (1 & 2).")
-                            for item in database:
-                                if item["Dairy"] == user_dairy_choice:
-                                    clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
-                                    print(clean_item)
-                            if dairy_choice == 1:
-                                user_dairy_choice = True
-                                temp_value3 = False
-                            elif dairy_choice == 2:
-                                user_dairy_choice = False
-                                temp_value3 = False
-                            for item in database2:
-                                if item["Dairy"] == user_dairy_choice:
-                                    clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
-                                    print(clean_item)
+                                dairy_choice = int(dairy_choice)
+                                if dairy_choice == 1:
+                                    user_dairy_choice = True
+                                    temp_value3 = False
+                                elif dairy_choice == 2:
+                                    user_dairy_choice = False
+                                    temp_value3 = False
+                                else:
+                                    print("Please choose one of the options provided (1 & 2).")
+                                for item in database:
+                                    if item["Dairy"] == user_dairy_choice:
+                                        clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                        print(clean_item)
+                                if dairy_choice == 1:
+                                    user_dairy_choice = True
+                                    temp_value3 = False
+                                elif dairy_choice == 2:
+                                    user_dairy_choice = False
+                                    temp_value3 = False
+                                for item in database2:
+                                    if item["Dairy"] == user_dairy_choice:
+                                        clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                        print(clean_item)
             elif choice == 2:
                 temp_value = False
                 while temp_value2:
