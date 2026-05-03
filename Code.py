@@ -1,8 +1,8 @@
 pizza_list = [
-{"Pizza": "Pepperoni", "Price ($)": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Meat Lovers", "Price ($)": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Margherita", "Price ($)": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Vegetarian", "Price ($)": 13, "GF Free?": True, "Vegan?": True,"Dairy?": False}, 
+{"Pizza": "Pepperoni Pizza", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Meat Lovers Pizza", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Margherita Pizza", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Vegetarian Pizza", "Price": 13, "GF Free?": True, "Vegan?": True,"Dairy?": False}, 
 ]
 sides_list = [
 {"Side": "Fries", "Price": 8, "GF Free?": False, "Vegan?": True,"Dairy?": False}, 
@@ -65,10 +65,20 @@ def view_cart(database):
 
 def checkout(database): 
     tally = 0
+    total = 0
     for items in database:
         tally += 1
-        clean_cart = str(items).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
-        print(f"\n{tally}. {clean_cart["Pizza"]} - {clean_cart["Price"]}")
+        if "Pizza" in items:
+            name = items["Pizza"]
+        else:
+            name = items["Side"]
+        price = items["Price"]
+        clean_name = str(name).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+        clean_price = str(price).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+        print(f"\n{tally}. {clean_name} - ${clean_price}")
+        total += int(price)
+    print(f"\n-------------------")
+    print(f"\n Total Price : {total}")
 
 def menu_display():
     print(f"\n Welcome to the pizza place!")
