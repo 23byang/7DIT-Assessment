@@ -55,13 +55,16 @@ def add_item(database, database2):
 def remove_item(database):
     """This function allows users to remove items from their cart."""
     view_cart(database)
-    try:
-        removed_number = float(input("\nPlease input the item you want to remove using their corresponding cart number. "))
-        removed_number = int(removed_number)
-        cart.pop(removed_number - 1)
-        print("Successfully removed item.")
-    except ValueError:
-        print("\nInvalid Option, please input a whole positive integer corresponding to your choice.")
+    if database == []:
+        print("Cart Empty, returning to main menu.")
+    else:
+        try:
+            removed_number = float(input("\nPlease input the item you want to remove using their corresponding cart number. "))
+            removed_number = int(removed_number)
+            cart.pop(removed_number - 1)
+            print("Successfully removed item.")
+        except ValueError:
+            print("\nInvalid Option, please input a whole positive integer corresponding to your choice.")
 
 
 def price_extractor(item):
