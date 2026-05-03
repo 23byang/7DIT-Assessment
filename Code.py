@@ -107,8 +107,18 @@ def sort(database, database2):
                                 clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
                                 print(clean_item)
                                 temp_value2 = False
+                        for item in database2:
+                            if item["GF Free"] is True:
+                                clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                print(clean_item)
+                                temp_value2 = False
                     if subchoice == 3:
                         for item in database:
+                            if item["Vegan"] is True:
+                                clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                print(clean_item)
+                                temp_value2 = False
+                        for item in database2:
                             if item["Vegan"] is True:
                                 clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
                                 print(clean_item)
@@ -127,6 +137,16 @@ def sort(database, database2):
                             else:
                                 print("Please choose one of the options provided (1 & 2).")
                             for item in database:
+                                if item["Dairy"] == user_dairy_choice:
+                                    clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+                                    print(clean_item)
+                            if dairy_choice == 1:
+                                user_dairy_choice = True
+                                temp_value3 = False
+                            elif dairy_choice == 2:
+                                user_dairy_choice = False
+                                temp_value3 = False
+                            for item in database2:
                                 if item["Dairy"] == user_dairy_choice:
                                     clean_item = str(item).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
                                     print(clean_item)
