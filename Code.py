@@ -1,7 +1,8 @@
+import random
 pizza_list = [
 {"Pizza": "Pepperoni Pizza", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Meat Lovers Pizza", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
-{"Pizza": "Margherita Pizza", "Price": 13, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Meat Lovers Pizza", "Price": 14, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
+{"Pizza": "Margherita Pizza", "Price": 15, "GF Free?": True, "Vegan?": False,"Dairy?": False}, 
 {"Pizza": "Vegetarian Pizza", "Price": 13, "GF Free?": True, "Vegan?": True,"Dairy?": False}, 
 ]
 sides_list = [
@@ -52,9 +53,96 @@ def remove_item(database):
         print(f"Successfully removed item.")
     except ValueError:
         print(f"\nInvalid Option, please input a whole positive integer corresponding to your choice.")
-"""
-def sort(database): 
-"""
+def price_extractor(item):
+    if "Price" in item:
+        return item["Price"]
+def sort(database,database2): 
+    running = True
+    temp_list = [*database,*database2]
+    temp_list2 = database
+    temp_list3 = database2
+    while running:
+        try:
+            choice = int(input(f"Would you like to sort the Whole Menu (1), Pizza Menu (2) or the Sides Menu (3)"))
+            if choice == 1:
+                running = False
+                subchoice = int(input(f"Would you like to sort the selected menu type by price (1), or whether or not the item is GF Free (2), Vegan (3) or Dairy (4)"))
+                if subchoice == 1:
+                    temp_list.sort(key = price_extractor)
+                    print(f"\nSorted Menu:")
+                    for item in temp_list:
+                        clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                        print(clean_item)
+                if subchoice == 2:
+                    for item in database:
+                        if ["GF Free"] == True:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                if subchoice == 3:
+                    for item in database:
+                        if ["Vegan"] == True:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                if subchoice == 4:
+                    dairy_choice = input(f"Do you want to see items containing dairy (True/False):")
+                    for item in database:
+                        if ["Dairy"] == dairy_choice:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+            elif choice == 2:
+                running = False
+                subchoice = int(input(f"Would you like to sort the selected menu type by price (1), or whether or not the item is GF Free (2), Vegan (3) or Dairy (4)"))
+                if subchoice == 1:
+                    temp_list2.sort(key = price_extractor)
+                    for item in temp_list2:
+                        clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                        print(f"\nSorted Menu:")
+                        print(clean_item)  
+                if subchoice == 2:
+                    for item in database:
+                        if ["GF Free"] == True:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                if subchoice == 3:
+                    for item in database:
+                        if ["Vegan"] == True:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                if subchoice == 4:
+                    dairy_choice = input(f"Do you want to see items containing dairy (True/False):")
+                    for item in database:
+                        if ["Dairy"] == dairy_choice:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                subchoice = int(input(f"Would you like to sort the selected menu type by price (1), or whether or not the item is GF Free (2), Vegan (3) or Dairy (4)"))
+            elif choice == 3:
+                running = False
+                subchoice = int(input(f"Would you like to sort the selected menu type by price (1), or whether or not the item is GF Free (2), Vegan (3) or Dairy (4)"))
+                if subchoice == 1:
+                    temp_list3.sort(key = price_extractor)
+                    for item in temp_list3:
+                        clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                        print(f"\nSorted Menu:")
+                        print(clean_item)
+                if subchoice == 2:
+                    for item in database2:
+                        if ["GF Free"] == True:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                if subchoice == 3:
+                    for item in database2:
+                        if ["Vegan"] == True:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                if subchoice == 4:
+                    dairy_choice = input(f"Do you want to see items containing dairy (True/False):")
+                    for item in database2:
+                        if ["Dairy"] == dairy_choice:
+                            clean_item = str(item).replace("{","").replace("}","").replace("[","").replace("]","").replace("'","").replace('"',"")
+                            print(clean_item)
+                subchoice = int(input(f"Would you like to sort the selected menu type by price (1), or whether or not the item is GF Free (2), Vegan (3) or Dairy (4)"))                
+        except ValueError:
+            print(f"Invalid Input, please input one of the provided options")
 def view_cart(database): 
     tally = 0
     for items in database:
@@ -79,6 +167,20 @@ def checkout(database):
         total += int(price)
     print(f"\n-------------------")
     print(f"\n Total Price : {total}")
+    running = True
+    while running:
+        try:
+            choice = input(f"Would you like to finalise your purchase? (Yes/No)").lower()
+            if choice == "yes":
+                print(f"Your order number is {random.randint(1,100)}.")
+                running = False
+            elif choice == "no":
+                running = False
+            else:
+                print(f'Invalid Choice, please input ("Yes" or "No")')
+
+        except ValueError:
+            print(f'Invalid Choice, please input ("Yes" or "No")')
 
 def menu_display():
     print(f"\n Welcome to the pizza place!")
@@ -105,7 +207,7 @@ def menu_function():
                 elif choice == 5:
                     view_cart(cart)
                 elif choice == 4:
-                    sort(pizza_list)
+                    sort(pizza_list,sides_list)
                 elif choice == 3:
                     remove_item(cart)
                 elif choice == 2:
