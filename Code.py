@@ -87,11 +87,13 @@ def sort(database, database2):
     temp_list3 = database2
     while temp_value:
         try:
-            choice = int(input("Would you like to sort the Whole Menu (1), Pizza Menu (2) or the Sides Menu (3)"))
+            choice = float(input("Would you like to sort the Whole Menu (1), Pizza Menu (2) or the Sides Menu (3)"))
+            choice = int(choice)
             if choice == 1:
                 temp_value = False
                 while temp_value2:
-                    subchoice = int(input("Would you like to sort the selected menu type by price (1), or whether or not the item has a GF Free option (2), Vegan option(3) or has Dairy (4):"))
+                    subchoice = float(input("Would you like to sort the selected menu type by price (1), or whether or not the item has a GF Free option (2), Vegan option(3) or has Dairy (4):"))
+                    subchoice = int(subchoice)
                     if subchoice == 1:
                         temp_list.sort(key=price_extractor)
                         print("\nSorted Menu:")
@@ -114,7 +116,8 @@ def sort(database, database2):
                     if subchoice == 4:
                         temp_value2 = False
                         while temp_value3:
-                            dairy_choice = int(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
+                            dairy_choice = float(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
+                            dairy_choice = int(dairy_choice)
                             if dairy_choice == 1:
                                 user_dairy_choice = True
                                 temp_value3 = False
@@ -130,7 +133,8 @@ def sort(database, database2):
             elif choice == 2:
                 temp_value = False
                 while temp_value2:
-                    subchoice = int(input("Would you like to sort the selected menu type by price (1), or whether or not the item has a GF Free option (2), Vegan option(3) or has Dairy (4):"))
+                    subchoice = float(input("Would you like to sort the selected menu type by price (1), or whether or not the item has a GF Free option (2), Vegan option(3) or has Dairy (4):"))
+                    subchoice = int(subchoice)
                     if subchoice == 1:
                         temp_list2.sort(key=price_extractor)
                         print("\nSorted Menu:")
@@ -154,7 +158,8 @@ def sort(database, database2):
                     if subchoice == 4:
                         temp_value2 = False
                         while temp_value3:
-                            dairy_choice = int(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
+                            dairy_choice = float(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
+                            dairy_choice = int(dairy_choice)
                             if dairy_choice == 1:
                                 user_dairy_choice = True
                                 temp_value3 = False
@@ -170,7 +175,8 @@ def sort(database, database2):
             elif choice == 3:
                 temp_value = False
                 while temp_value2:
-                    subchoice = int(input("Would you like to sort the selected menu type by price (1), or whether or not the item has a GF Free option (2), Vegan option(3) or has Dairy (4):"))
+                    subchoice = float(input("Would you like to sort the selected menu type by price (1), or whether or not the item has a GF Free option (2), Vegan option(3) or has Dairy (4):"))
+                    subchoice = int(subchoice)
                     if subchoice == 1:
                         temp_list3.sort(key=price_extractor)
                         print("\nSorted Menu:")
@@ -192,7 +198,8 @@ def sort(database, database2):
                     if subchoice == 4:
                         temp_value2 = False
                         while temp_value3:
-                            dairy_choice = int(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
+                            dairy_choice = float(input("Do you want to see items containing dairy (1) or items that do not have dairy (2):"))
+                            dairy_choice = int(dairy_choice)
                             if dairy_choice == 1:
                                 user_dairy_choice = True
                                 temp_value3 = False
