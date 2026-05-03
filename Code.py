@@ -262,33 +262,36 @@ def checkout(database):
     """This function brings the user to the checkout page, showing them the whole order as well as the price, with a option to finalise purchase or go back to shopping."""
     tally = 0
     total = 0
-    for items in database:
-        tally += 1
-        if "Pizza" in items:
-            name = items["Pizza"]
-        else:
-            name = items["Side"]
-        price = items["Price"]
-        clean_name = str(name).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
-        clean_price = str(price).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
-        print(f"\n{tally}. {clean_name} - ${clean_price}")
-        total += int(price)
-    print("\n-------------------")
-    print(f"\n Total Price : ${total}")
-    running = True
-    while running:
-        try:
-            choice = input("Would you like to finalise your purchase? (Yes/No)").lower()
-            if choice == "yes":
-                print(f"Your order number is {random.randint(1,100)}.")
-                running = False
-                exit()
-            elif choice == "no":
-                running = False
+    if database == []:
+        print("Cart Empty, returning to main menu.")
+    else:
+        for items in database:
+            tally += 1
+            if "Pizza" in items:
+                name = items["Pizza"]
             else:
+                name = items["Side"]
+            price = items["Price"]
+            clean_name = str(name).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+            clean_price = str(price).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+            print(f"\n{tally}. {clean_name} - ${clean_price}")
+            total += int(price)
+        print("\n-------------------")
+        print(f"\n Total Price : ${total}")
+        running = True
+        while running:
+            try:
+                choice = input("Would you like to finalise your purchase? (Yes/No)").lower()
+                if choice == "yes":
+                    print(f"Your order number is {random.randint(1,100)}.")
+                    running = False
+                    exit()
+                elif choice == "no":
+                    running = False
+                else:
+                    print('Invalid Choice, please input ("Yes" or "No")')
+            except ValueError:
                 print('Invalid Choice, please input ("Yes" or "No")')
-        except ValueError:
-            print('Invalid Choice, please input ("Yes" or "No")')
 
 
 def menu_display():
